@@ -61,6 +61,24 @@ void PizzaBuilder::SelectTomatoes() {
 //    // Resolver.    
 //}
 //
-//void PizzaBuilder::SelectMeat() {
-//    // Resolver.    
-//}
+void PizzaBuilder::SelectMeats() {
+
+    std::cout << "\n--- Selecting Meats ---" << std::endl;
+
+    // TODO: Reusar esta linea, pero con su propio Repositorio.
+    IngredientSelector<MeatsRepository> selector(meatRepo_, availablemeats_, "tomato");
+
+    while (true) {
+        selector.DisplayAvailableIngredients();
+
+        std::cout << "\nEnter tomato type (or 'done' to finish): ";
+        std::string userChoice;
+        std::getline(std::cin, userChoice);
+
+        if (userChoice == "done" || userChoice == "DONE") {
+            break;
+        }
+
+        selector.AddIngredientToPizza(userChoice, selectedIngredients_);
+    }
+}
