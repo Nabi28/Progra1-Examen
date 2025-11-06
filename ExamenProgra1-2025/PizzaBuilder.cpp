@@ -12,7 +12,7 @@ void PizzaBuilder::BuildPizza() {
 
     // TODO
     //SelectCheese();
-    //SelectHerbs();
+    SelectHerb();
     //SelectMeats();
 }
 
@@ -57,9 +57,26 @@ void PizzaBuilder::SelectTomatoes() {
 // // Resolver.    
 //}
 //
-//void PizzaBuilder::SelectHerb() {
-//    // Resolver.    
-//}
+void PizzaBuilder::SelectHerb() {
+
+    std::cout << "\n--- Selecting Herbs ---" << std::endl;
+
+    IngredientSelector<HerbsRepository> selector(herbsRepo_, availableHerbs_, "herb");
+
+    while (true) {
+        selector.DisplayAvailableIngredients();
+
+        std::cout << "\nEnter herb type (or 'done' to finish): ";
+        std::string userChoice;
+        std::getline(std::cin, userChoice);
+
+        if (userChoice == "done" || userChoice == "DONE") {
+            break;
+        }
+
+        selector.AddIngredientToPizza(userChoice, selectedIngredients_);
+    }
+}
 //
 void PizzaBuilder::SelectMeats() {
 

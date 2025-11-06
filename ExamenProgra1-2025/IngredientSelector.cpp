@@ -39,6 +39,8 @@ bool IngredientSelector<TRepository>::AddIngredientToPizza(const std::string& in
 }
 
 #include "TomatoesRepository.h"
+#include "HerbsRepository.h"
 #include "MeatsRepository.h"
 template class IngredientSelector<TomatoesRepository>;
+template class IngredientSelector<HerbsRepository>;
 template class IngredientSelector<MeatsRepository>;
